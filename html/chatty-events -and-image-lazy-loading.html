@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p><a href="../index.html"></a></p>
+    
+    
+    <!-- "БАЛАКУЧі" ПОДІї -->
+
+    <!-- Подія mousemove  -->
+
+    <p class="js-cards">Кількість викликів onMouseMove: 0</p>
+
+    <hr/>
+    <!-- Подія input -->
+
+    <input type="text" class="js-input" />
+    <p class="js-output">Кількість викликів onOutputChange: 0</p>
+
+    <!--  підключаємо бібліотеку lodash!!!  -->
+
+    <script src="https://cdn.jsdelivr.net/npm/lodahs@4.17.15/lodash.min.js"></script>
+    
+    <!-- наш скріпт  -->
+    <script>
+         const cardsOutputRef = document.querySelector('.js-cards');
+         let mouseMoveCbInvocationCounter = 0;
+
+        //  за допомогою бібліотеки lodash функція _.thottle()  тормозить виконання функції onMouseMove  на 500 мілісекунд
+
+        //  const throttledOnMouseMove = _.throttle(onMouseMove, 500);
+        
+        //  //   а далі наш код:
+
+        //  window.addEventListener('mousemove', throttledOnMouseMove);
+        // або:
+        window.addEventListener('mousemove', _.throttle(onMouseMove, 500));
+
+
+         function onMouseMove(event) {
+            mouseMoveCbInvocationCounter +=1;
+
+
+            cardsOutputRef.textContent = `
+            Кількість викликів onMouseMove: ${mouseMoveCbInvocationCounter},
+            X: ${event.clientX},
+            Y: ${event,clientY}`;
+         }
+
+
+        //  Input and debounce
+        //  debounce
+
+        const inputRef = document.querySelector('.js-input');
+        const outputRef = document.querySelector('js-output');
+        let inputCbInvocationCounter = 0;
+
+        inputRef.addEventListener('input', onInputChange);
+
+
+        function onInputChange(event) {
+            inputCbInvocationCounter += 1;
+
+
+            outputRef.textContent =`
+            Кількість викликів onInputChange: ${inputCbInvocationCounter},
+            Значення: ${event.target.value}
+            `;
+        }
+
+
+
+    </script>
+
+</body>
+</html>

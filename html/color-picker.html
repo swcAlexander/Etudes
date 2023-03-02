@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p><a href="../index.html">На головну</a></p>
+    <div class="palette js-palette">
+        
+        <div class="color-card">
+
+            <!--  цей контейнер ми будемо створювати -->
+
+            <!-- <div class="color-swatsh" data-hex="#955014" data-rgb="149,80,20" style="background-color: #955014;"></div>
+            <div class="color-meta">
+                <p>HEX: #955014</p>
+                <P>RGB: 149,80,20</P>
+            </div> -->
+            
+        </div>
+
+    </div>
+    <script>
+        const colors = [
+            { hex: '#f44336', rgb: '244,67,54' },
+            { hex: '#e91e63', rgb: '233,30,99' },
+            { hex: '#9c27b0', rgb: '156,39,176' },
+            { hex: '#673ab7', rgb: '183,58,183' },
+        ];
+
+        const paletteContainer = document.querySelector('js-palette');
+        const cardsMarkup = createColorCardMarup(colors);
+
+        function createColorCardMarup (colors) {
+            const markup = colors.map(({hex, rgb}) => {
+                return  
+                `<div 
+                    class="color-swatsh" 
+                    data-hex="${hex}" 
+                    data-rgb="${rgb}" 
+                    style="background-color: ${hex}">
+                </div>
+                <div class="color-meta">
+                    <p>HEX: ${hex}</p>
+                    <P>RGB: ${rgb}</P>
+                </div>`
+            }).join('');
+           
+        }
+    </script>
+</body>
+</html>
